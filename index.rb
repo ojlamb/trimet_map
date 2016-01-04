@@ -17,7 +17,15 @@ get '/locations' do
         geometry: {
           type: 'Point',
           coordinates: [vehicle["longitude"], vehicle["latitude"]]
-        }
+        },
+        properties: {
+          route: vehicle["signMessage"],
+          vehicle_type: vehicle["type"],
+          next_stop: vehicle["nextLocID"],
+          :'marker-color' => '#FE5F55',
+          :'marker-symbol' => 'circle',
+          :'marker-size' => 'medium'
+        },
       }
   end
   return @geojson.to_json
