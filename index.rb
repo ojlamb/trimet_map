@@ -22,9 +22,6 @@ get '/locations' do
           route: vehicle["signMessage"],
           vehicle_type: vehicle["type"],
           next_stop: vehicle["nextLocID"],
-          :'marker-color' => '#FE5F55',
-          :'marker-symbol' => 'circle',
-          :'marker-size' => 'medium'
         },
       }
   end
