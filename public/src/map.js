@@ -11,15 +11,6 @@ var mywms = L.tileLayer.wms("http://localhost:8080/geoserver/tm_routes/wms", {
 
 mywms.addTo(map);
 
-var busIcon = L.icon({
-    iconUrl: 'bus.png',
-    iconSize:     [38, 95], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
-
-
 setInterval(function() {
 
   $.ajax({

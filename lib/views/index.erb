@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trimet Vehicle Tracker</title>
+  <style>
+    * { margin: 0; padding: 0;
+        text-align: center !important;
+        margin: auto !important;
+        color: Black;
+        background-size: cover;
+        font-family: helvetica;
+      }
+    html, body {height:100%}
+  </style>
+</head>
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/TriMet_logo.svg/1280px-TriMet_logo.svg.png" height="100px" width="400px" >
+  <h1>Welcome to Trimet Vehicle Tracker<h1>
+</header>
+<body>
+<div>
+<form action="/map" method="post">
+  <input type='text' name='route' placeholder="Enter Vehicle Number eg. 15">
+  <select>
+    <option value="N">North</option>
+    <option value="S">South</option>
+    <option value="E">East</option>
+    <option value="W">West</option>
+  </select>
+  <input value="Submit" type="submit">
+</form>
+<div>
+</body>
+</html>
