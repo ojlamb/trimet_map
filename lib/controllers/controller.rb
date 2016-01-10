@@ -14,8 +14,8 @@ class Trimet < Sinatra::Base
   end
 
  post '/map' do
-   p "Hello World"
-    @route = params[:name]
+    @route = params[:route]
+    session[:route] = params[:route]
     @direction = params[:direction]
     erb :map
   end
@@ -24,8 +24,11 @@ class Trimet < Sinatra::Base
     url = 'https://developer.trimet.org/ws/v2/vehicles/appID/C0CC51742247874978039EC27'
     response = HTTParty.get(url)
     @data = response.parsed_response
+    @vehicles = @data["resultSet"]["vehicle"]
+    @route_number = session[:route].to_i
+    @route_vehicles = @vehicles.select {|route| route["routeNumber"] == @route_number }
     @geojson = Array.new
-    @data["resultSet"]["vehicle"].each do |vehicle|
+    @route_vehicles.each do |vehicle|
         @geojson << {
           type: 'Feature',
           geometry: {
