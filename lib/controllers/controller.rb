@@ -17,6 +17,7 @@ class Trimet < Sinatra::Base
     @route = params[:route]
     session[:route] = params[:route]
     @direction = params[:direction]
+    session[:direction] = params[:direction]
     erb :map
   end
 
@@ -26,7 +27,8 @@ class Trimet < Sinatra::Base
     @data = response.parsed_response
     @vehicles = @data["resultSet"]["vehicle"]
     @route_number = session[:route].to_i
-    @route_vehicles = @vehicles.select {|route| route["routeNumber"] == @route_number }
+    @route_direction = session[:direction].to_i
+    @route_vehicles = @vehicles.select {|route| route["routeNumber"] == @route_number && route["direction"]== @route_direction }
     @geojson = Array.new
     @route_vehicles.each do |vehicle|
         @geojson << {
